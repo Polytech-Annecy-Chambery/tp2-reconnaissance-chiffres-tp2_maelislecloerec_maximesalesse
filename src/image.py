@@ -85,7 +85,7 @@ class Image:
                             l_min = l
            
         im_loc = Image()
-        im_loc.set_pixels(self.pixels[l_min:l_max,c_min:c_max])
+        im_loc.set_pixels(self.pixels[l_min:l_max+1,c_min:c_max+1])
     
         return im_loc
                         
@@ -99,7 +99,7 @@ class Image:
     #==============================================================================
     def resize1(self, new_H, new_W):
         im_re = Image()
-        im_re.set_pixels(resize(self.pixels, (new_H,new_W), 0))
+        im_re.set_pixels(np.uint8(resize(self.pixels, (new_H,new_W), 0)))
         return im_re
         
 

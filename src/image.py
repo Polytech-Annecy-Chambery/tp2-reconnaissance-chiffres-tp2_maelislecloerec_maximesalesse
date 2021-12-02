@@ -108,25 +108,13 @@ class Image:
     # Methode de mesure de similitude entre l'image self et un modele im
     #==============================================================================
     def similitude(self, im):
-        im_sim = Image()
-        im_sim.resize1(self.pixels(self.H,self.W))
-        nbr_pixel = 0
-        nbr_pixel1 = 0
         sim = 0
         for l in range(self.H):
             for c in range(self.W):
-                if im.resize1.pixels[l,c] == 0:
-                    nbr_pixel += 1
-                if self.pixels[l,c]== im.resize1.pixels[l,c]:
-                    sim = 1
-                if self.pixels[l,c] == 0:
-                    nbr_pixel1 += 1
-                    
-        if nbr_pixel == nbr_pixel1:
-            sim = 1
-        else:
-            sim = 0
-                    
-        return sim
+                if im.pixels[l,c] == self.pixels[l,c]:
+                  sim +=1
+        nbr_sim = float(sim/(self.H*self.W))
+        
+        return nbr_sim
 
 

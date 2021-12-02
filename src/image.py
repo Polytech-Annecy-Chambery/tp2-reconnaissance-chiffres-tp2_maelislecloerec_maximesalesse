@@ -99,7 +99,7 @@ class Image:
     #==============================================================================
     def resize1(self, new_H, new_W):
         im_re = Image()
-        im_re.set_pixels(np.uint8(resize(self.pixels, (new_H,new_W), 0)))
+        im_re.set_pixels(np.uint8(resize(self.pixels, (new_H,new_W), 0))*255)
         return im_re
         
 
@@ -108,5 +108,25 @@ class Image:
     # Methode de mesure de similitude entre l'image self et un modele im
     #==============================================================================
     def similitude(self, im):
-        pass
+        im_sim = Image()
+        im_sim.resize1(self.pixels(self.H,self.W))
+        nbr_pixel = 0
+        nbr_pixel1 = 0
+        sim = 0
+        for l in range(self.H):
+            for c in range(self.W):
+                if im.resize1.pixels[l,c] == 0:
+                    nbr_pixel += 1
+                if self.pixels[l,c]== im.resize1.pixels[l,c]:
+                    sim = 1
+                if self.pixels[l,c] == 0:
+                    nbr_pixel1 += 1
+                    
+        if nbr_pixel == nbr_pixel1:
+            sim = 1
+        else:
+            sim = 0
+                    
+        return sim
+
 
